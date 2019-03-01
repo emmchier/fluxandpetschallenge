@@ -1,0 +1,16 @@
+<resources>
+
+    <dimen name="detailHeaderHeight">200dp</dimen>
+    <dimen name="circularImage">180dp</dimen>
+    <dimen name="petDimenName">16dp</dimen>
+
+    <!-- Pet Card -->
+    <dimen name="cardPetWidth">190dp</dimen>
+    <dimen name="cardPetHeight">220dp</dimen>
+    <dimen name="marginTopImgCell">50dp</dimen>
+    <dimen name="petCardImgSize">60dp</dimen>
+
+    <dimen name="spacing_medium">5dp</dimen>
+
+
+</resources>

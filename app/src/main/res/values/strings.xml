@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">fluxandpets</string>
+
+    <!-- Pet data-->
+    <string name="petName">petName</string>
+    <string name="petDni">petId</string>
+
+    <!-- Text Detail-->
+    <string name="soy">Soy</string>
+    <string name="available">y quiero que \n ¡ me adoptes !</string>
+    <string name="sold">y ya me adoptáron</string>
+    <string name="dni">Mi DNI es:</string>
+
+    <!-- Maps-->
+    <string name="titleActivityMaps">Map</string>
+    <string name="google_maps_key">AIzaSyAaJEWQVpV89fnW-gzVUHOc2MHFTX_bSgI</string>
+
+    <!-- Tabs-->
+    <string name="pet">SOBRE MI</string>
+    <string name="map">SUCURSALES</string>
+
+</resources>

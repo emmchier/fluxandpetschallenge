@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EDE7F6</color>
+    <color name="colorPrimaryDark">#B39DDB</color>
+    <color name="colorAccent">#26c6da</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="gradient1">#4D000000</color>
+    <color name="gradient2">#66000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="toast">#f06292</color>
+    <color name="darkTitle">#212121</color>
+    <color name="greyDark">#78909c</color>
+    <color name="greyMedium">#FF9E9E9E</color>
+    <color name="primaryGray">#e7e6e6</color>
+    <color name="deep_purple_50">#EDE7F6</color>
+</resources>
