@@ -18,17 +18,26 @@ import com.example.emmchierchie.fluxandpets.Utils.ResultListener;
 import com.example.emmchierchie.fluxandpets.View.Adapters.AdapterRVPets;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityHome extends AppCompatActivity implements AdapterRVPets.PetListener {
 
     private AdapterRVPets adapterPets;
     private Controller controller;
-
-    private ActionBar actionBar;
-    private Toolbar toolbar;
-    private RecyclerView recyclerViewPets;
-    private ProgressBar progressBar;
     private View parent_view;
-    private SwipeRefreshLayout swipeToRefresh;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.recyclerViewPets)
+    RecyclerView recyclerViewPets;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.swipeToRefresh)
+    SwipeRefreshLayout swipeToRefresh;
 
     // pido el status que quiera desde una variable que le paso al método del controlador
     private String status = "available";
@@ -37,29 +46,33 @@ public class ActivityHome extends AppCompatActivity implements AdapterRVPets.Pet
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
+        // utilizo ButterKnife para pasar como parámetro y llamar vista de manera más ordenada
+        ButterKnife.bind(this);
 
         // modulo el trabajo en métodos y desde la vista solo los llamo
-        initViews();
         serRecyclerView();
-        setRefresh();
         loadPetList();
         initToolbar();
+        setRefresh();
 
         // carga la progress bar
         progressBar.setVisibility(View.VISIBLE);
+
+        // vista del snackbar
+        parent_view = findViewById(android.R.id.content);
     }
 
     // pido al controlador la lista de mascotas con el status declarado en la variable
     private void loadPetList() {
         controller = new Controller(this);
-        ResultListener<List<Pet>> escuchadorVista = new ResultListener<List<Pet>>() {
+        ResultListener<List<Pet>> viewListener = new ResultListener<List<Pet>>() {
             @Override
-            public void finish(List<Pet> resultado) {
+            public void finish(List<Pet> result) {
                 // si los resultados no son nulos, deja de cargar la progress bar, se muestra la lista y avisa por snackbar
                 // de lo contrario avisa el resultado negativo
 
-                if (resultado != null) {
-                    adapterPets.refreshPetList(resultado);
+                if (result != null) {
+                    adapterPets.refreshPetList(result);
                     progressBar.setVisibility(View.GONE);
                     Snackbar.make(parent_view, "Carga exitosa!", Snackbar.LENGTH_LONG).show();
                 } else {
@@ -68,16 +81,7 @@ public class ActivityHome extends AppCompatActivity implements AdapterRVPets.Pet
                 }
             }
         };
-        controller.getPetsByStatus(escuchadorVista,status);
-    }
-
-    // llamo a las vistas
-    private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
-        recyclerViewPets = findViewById(R.id.recyclerViewPets);
-        progressBar = findViewById(R.id.progressBar);
-        parent_view = findViewById(android.R.id.content);
-        swipeToRefresh = findViewById(R.id.swipeToRefresh);
+        controller.getPetsByStatus(viewListener,status);
     }
 
     // seteo el recycler view como una lista de grid

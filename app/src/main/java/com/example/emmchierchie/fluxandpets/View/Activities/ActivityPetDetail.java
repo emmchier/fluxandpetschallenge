@@ -2,6 +2,7 @@ package com.example.emmchierchie.fluxandpets.View.Activities;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,31 +15,42 @@ import com.example.emmchierchie.fluxandpets.R;
 import com.example.emmchierchie.fluxandpets.Utils.ResultListener;
 import com.example.emmchierchie.fluxandpets.View.Adapters.AdapterViewPager;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityPetDetail extends AppCompatActivity {
 
-    private ViewPager viewPagerData;
     private AdapterViewPager adapterViewPager;
-    private TabLayout tab;
-    private Toolbar toolbar;
     private String petId;
-    private ProgressBar progressBar;
-    private ImageButton backButton;
-
     private Controller controller;
-
     private FragmentManager fragmentManager;
 
     // recibo el ID del objeto en la celda seleccionada
     public static final String PET_ID = "PET_ID";
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.viewPager)
+    ViewPager viewPagerData;
+
+    @BindView(R.id.tab)
+    TabLayout tab;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.backButton)
+    ImageButton backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_pet_detail );
+        ButterKnife.bind(this);
 
-        initViews();
-        initToolbar();
         setComponents();
+        initToolbar();
         setBackButton();
 
         progressBar.setVisibility(View.VISIBLE);
@@ -61,14 +73,6 @@ public class ActivityPetDetail extends AppCompatActivity {
             }
         };
         controller.getPetId(viewListener,petId);
-    }
-
-    private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
-        viewPagerData = findViewById(R.id.viewPager);
-        tab = findViewById(R.id.tab);
-        progressBar = findViewById(R.id.progressBar);
-        backButton = findViewById(R.id.backButton);
     }
 
     private void initToolbar() {
